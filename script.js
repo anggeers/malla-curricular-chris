@@ -37,6 +37,9 @@ const malla = [
   }
 ];
 
+const cursosRelacionados = {
+  "Introducción a Matemáticas": { semestre: "2do Semestre", curso: "Matemáticas" }
+
 const container = document.getElementById("malla-container");
 
 malla.forEach((semestre) => {
