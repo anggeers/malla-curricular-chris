@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Calibri, calibri;
   padding: 20px;
   background-color: #f0f0f5;
 }
@@ -30,13 +30,18 @@ h1 {
 }
 
 .curso {
-  background-color: #e6f7ff;
+  background-color: #f0f0f5;
   margin: 5px 0;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.curso.completado {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
 .curso:hover {
-  background-color: #bae7ff;
+  background-color: #002a5e;
 }
