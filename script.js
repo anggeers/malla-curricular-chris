@@ -37,11 +37,29 @@ const malla = [
   }
 ];
 
+// Qué desbloquea cada curso
 const cursosRelacionados = {
   "Introducción a Matemáticas": { semestre: "2do Semestre", curso: "Matemáticas" }
 
 const container = document.getElementById("malla-container");
 
+// Función para mostrar el curso relacionado
+function mostrarCursoRelacionado(semestreNombre, cursoNombre) {
+  const semestres = document.querySelectorAll('.semestre');
+  semestres.forEach(semestre => {
+    const titulo = semestre.querySelector('h2').textContent;
+    if (titulo === semestreNombre) {
+      const cursos = semestre.querySelectorAll('.curso');
+      cursos.forEach(curso => {
+        if (cursos.textContent === cursoNombre) {
+          curso.style.display = 'block';
+        }
+      });
+    }
+  });
+}
+
+// Construir visualmente la malla
 malla.forEach((semestre) => {
   const semestreDiv = document.createElement("div");
   semestreDiv.className = "semestre";
@@ -54,7 +72,21 @@ malla.forEach((semestre) => {
     const cursoDiv = document.createElement("div");
     cursoDiv.className = "curso";
     cursoDiv.textContent = curso;
-    cursoDiv.onclick = () => alert(`Detalles del curso: ${curso}`);
+
+    // Ocultar cursos que se desbloquean después
+    if (object.values(cursosRelacionados).some(r => r.curso === curso)) {
+      curso.Div.style.display = 'none'
+    }
+    
+    cursoDiv.onclick = () => {
+      cursoDiv.classList.toggle("Completado");
+
+      if (cursosRelacionados[cursos]) {
+        const { semestre, curso: cursoDesbloqueado } = cursosRelacionados[cursos];
+        mostrarCursoRelacionado(semestre, cursoDesbloqueado);
+      }
+    };
+
     semestreDiv.appendChild(cursoDiv);
   });
 
